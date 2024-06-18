@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Project - Project Management{% endblock %}
+
+{% block content %}
+    <h1>Add New Project</h1>
+    <form action="{{ url_for('add_project') }}" method="POST">
+        <label for="name">Project Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+
+        <label for="due_date">Due Date:</label><br>
+        <input type="date" id="due_date" name="due_date" required><br><br>
+
+        <input type="submit" value="Add Project">
+    </form>
+{% endblock %}

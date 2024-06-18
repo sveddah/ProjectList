@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Project Management{% endblock %}
+
+{% block content %}
+    <h1>Welcome to Project Management System</h1>
+    <ul>
+        <li><a href="{{ url_for('add_project') }}">Add Project</a></li>
+        <li><a href="{{ url_for('project_list') }}">Project List</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+    </ul>
+{% endblock %}

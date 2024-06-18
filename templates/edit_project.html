@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Project - Project Management{% endblock %}
+
+{% block content %}
+    <h1>Edit Project: {{ project.name }}</h1>
+    <form method="POST" action="{{ url_for('edit_project', project_id=project.id) }}">
+        <label>Name:</label>
+        <input type="text" name="name" value="{{ project.name }}" required><br>
+        <label>Description:</label>
+        <textarea name="description" required>{{ project.description }}</textarea><br>
+        <label>Due Date:</label>
+        <input type="date" name="due_date" value="{{ project.due_date }}" required><br>
+        <button type="submit">Update Project</button>
+    </form>
+
+    <h2>Project Members</h2>
+    <ul>
+        {% for member in members %}
+            <li>{{ member[1] }}</li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST" action="{{ url_for('add_member', project_id=project.id) }}">
+        <label>Add Member:</label>
+        <select name="user_id" required>
+            {% for user in users %}
+                <option value="{{ user[0] }}">{{ user[1] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Add Member</button>
+    </form>
+
+    <h2>Tasks</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task.name }} (Due: {{ task.due_date }})
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST" action="{{ url_for('add_task', project_id=project.id) }}">
+        <label>Task Name:</label>
+        <input type="text" name="name" required><br>
+        <label>Description:</label>
+        <textarea name="description" required></textarea><br>
+        <label>Due Date:</label>
+        <input type="date" name="due_date" required><br>
+        <button type="submit">Add Task</button>
+    </form>
+{% endblock %}
